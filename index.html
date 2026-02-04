@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator SLA & Restitusi Internet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Kalukator SLA & Restitusi</h1>
+            <p>Hitung kompensasi downtime internet Anda dengan akurat</p>
+        </header>
+
+        <main class="card">
+            <div class="input-section">
+                <h2>Parameter Layanan</h2>
+                
+                <div class="form-group">
+                    <label for="sla">SLA Bulanan (%)</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="sla" value="99.5" step="0.1" min="0" max="100">
+                        <span class="suffix">%</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="days">Jumlah Hari dalam Bulan</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="days" value="31" min="28" max="31">
+                        <span class="suffix">Hari</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="cost">Biaya Bulanan (Rp)</label>
+                    <div class="input-wrapper">
+                        <span class="prefix">Rp</span>
+                        <input type="text" id="cost" placeholder="3.000.000" onkeyup="formatCurrencyInput(this)">
+                    </div>
+                </div>
+
+                <h2>Downtime Aktual</h2>
+                <div class="time-inputs">
+                    <div class="form-group">
+                        <label for="down-hours">Jam</label>
+                        <input type="number" id="down-hours" value="0" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="down-minutes">Menit</label>
+                        <input type="number" id="down-minutes" value="0" min="0" max="59">
+                    </div>
+                </div>
+
+                <button id="calculate-btn">Hitung Restitusi</button>
+            </div>
+
+            <div class="result-section hidden" id="result-section">
+                <div class="result-header">
+                    <h3>Hasil Perhitungan</h3>
+                    <div id="status-badge" class="badge">Checking...</div>
+                </div>
+
+                <div class="result-grid">
+                    <div class="result-item">
+                        <span class="label">Total Waktu Bulan</span>
+                        <span class="value" id="res-total-time">-</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="label">Max Downtime (Y)</span>
+                        <span class="value" id="res-allowed">-</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="label">Downtime Aktual (X)</span>
+                        <span class="value" id="res-actual">-</span>
+                    </div>
+                    <div class="result-item highlight">
+                        <span class="label">Selisih (X - Y)</span>
+                        <span class="value" id="res-diff">-</span>
+                    </div>
+                </div>
+
+                <div class="total-restitution">
+                    <span class="label">Nilai Restitusi</span>
+                    <span class="value" id="res-total">Rp 0</span>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 Kalkulator SLA. Siap deploy ke Vercel.</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
